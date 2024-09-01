@@ -8,9 +8,12 @@
   --color-primary: #57534e;
   --color-secondary: #a3a3a3;
   --color-button: #57534ed1;
+  --light-green: #9fff9c;
+  --light-red: #ff9c9c;
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -44,11 +47,58 @@ header {
       );
       font-size: 1.2rem;
       font-weight: 600;
+      transition: box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    button:hover {
+      box-shadow: inset 0px 0px 10px 20px rgba(0, 0, 0, 0.1);
     }
 
     & h2 {
       font-size: 2.5rem;
       color: var(--color-text);
+    }
+  }
+}
+
+main {
+  display: grid;
+  max-width: 1200px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  margin: 20px auto;
+
+  .book-card {
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    line-height: 1.5;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    .btn {
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      box-shadow: inset 0px 0px 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-light-green {
+      background-color: var(--light-green);
+    }
+
+    .btn-light-red {
+      background-color: var(--light-red);
     }
   }
 }
