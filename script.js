@@ -9,7 +9,7 @@ const addBookForm = document.querySelector('.add-book-form');
 
 
 
-function Book(title , author , pages, isRead = 0){
+function Book(title , author , pages, isRead = false){
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -39,6 +39,7 @@ const createBookCard = (book) => {
     removeBtn.classList.add('btn');
 
     removeBtn.onclick = () => removeBookFromLibrary(book);
+    readBtn.onclick = () => toggleRead(book);
 
     title.textContent = `"${book.title}"`;
     author.textContent = book.author;
@@ -103,6 +104,11 @@ const updateBooksGrid = () => {
 
 function removeBookFromLibrary(bookToRemove){
     myLibrary = myLibrary.filter((book) => book !== bookToRemove );
+    updateBooksGrid();
+}
+
+const toggleRead = (book) => {
+    book.isRead = !book.isRead;
     updateBooksGrid();
 }
 
