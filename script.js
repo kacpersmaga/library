@@ -77,7 +77,7 @@ const getBookInformation = () => {
     const title = document.querySelector('#title').value;
     const author = document.querySelector('#author').value;
     const pages = document.querySelector('#pages').value;
-    const isRead = document.querySelector('#is-read').checked ? 1 : 0;
+    const isRead = document.querySelector('#is-read').checked ? true : false;
     console.log({ title, author, pages, isRead });
     return new Book(title,author,pages,isRead);
 }
@@ -89,6 +89,7 @@ const addBook = (event) => {
     createBookCard(newBook);
     addBookForm.reset();
     closeAddBookModal();
+    saveLocal();
 }
 
 const resetBooksGrid = () =>{
@@ -105,22 +106,30 @@ const updateBooksGrid = () => {
 function removeBookFromLibrary(bookToRemove){
     myLibrary = myLibrary.filter((book) => book !== bookToRemove );
     updateBooksGrid();
+    saveLocal();
 }
 
 const toggleRead = (book) => {
     book.isRead = !book.isRead;
     updateBooksGrid();
+    saveLocal();
 }
 
 addBookBtn.onclick = openAddBookModal;
 overlay.onclick = closeAddBookModal;
 addBookForm.onsubmit = addBook;
 
-const newBook = new Book('xd','xd','xd','Read');
-createBookCard(newBook);
+// Local Storage
 
-myLibrary.forEach(element => {
-    console.log(element);
-    
-});
+const saveLocal = () => {
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
+const restoreLocal = () => {
+    const data = JSON.parse(localStorage.getItem('myLibrary'));
+    myLibrary = data.map(book => new Book(book.title, book.author, book.pages, book.isRead));
+    updateBooksGrid();
+}
+
+restoreLocal();
 
