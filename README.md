@@ -42,7 +42,7 @@ This project taught me a lot about **DOM manipulation** in JavaScript. Key takea
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/library-project.git
+   git clone https://github.com/kacpersmaga/library.git
    cd library-project
    ```
 
